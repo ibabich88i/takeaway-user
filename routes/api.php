@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PasswordResetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('users', \App\Http\Controllers\Api\UserController::class, ['only' => ['store']]);
+Route::post('forgot', sprintf('%s@%s', PasswordResetController::class, 'forgot'));
