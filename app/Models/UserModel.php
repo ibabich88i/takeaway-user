@@ -2,14 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ */
+class UserModel extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+
+    public const TABLE_NAME = 'users';
+
+    /**
+     * @var string
+     */
+    protected $table = self::TABLE_NAME;
 
     /**
      * The attributes that are mass assignable.
@@ -30,14 +40,5 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 }
