@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\DataTransferObjects\Factories\ResetPasswordDTOFactory;
+use App\DataTransferObjects\Factories\ResetPasswordDTOFactoryInterface;
 use App\DataTransferObjects\Factories\UserStoreDTOFactory;
 use App\DataTransferObjects\Factories\UserStoreDTOFactoryInterface;
 use App\Http\Resources\Factories\PasswordResetResourceFactory;
@@ -106,9 +108,19 @@ class AppServiceProvider extends ServiceProvider
                     $container->get(PasswordResetResourceFactoryInterface::class),
                     $container->get(UserRepositoryInterface::class),
                     $container->get(PasswordResetRepositoryInterface::class),
+                    $container->get(HashManager::class),
+                    $container->get(LoggerInterface::class),
                 );
             }
         );
+
+        $this->app->bind(
+            ResetPasswordDTOFactoryInterface::class,
+            function (Container $container) {
+                return new ResetPasswordDTOFactory();
+            }
+        );
+
     }
 
     /**
