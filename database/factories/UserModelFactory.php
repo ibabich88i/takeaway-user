@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\PasswordResetModel;
+use App\Models\UserModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PasswordResetFactory extends Factory
+class UserModelFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = PasswordResetModel::class;
+    protected $model = UserModel::class;
 
     /**
      * Define the model's default state.
@@ -24,9 +24,9 @@ class PasswordResetFactory extends Factory
     public function definition()
     {
         return [
+            'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'token' => $this->faker->unique()->text,
-            'created_at' => new \DateTime()
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }
 }

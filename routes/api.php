@@ -15,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('users', \App\Http\Controllers\Api\UserController::class, ['only' => ['store']]);
-Route::post('forgot', sprintf('%s@%s', PasswordResetController::class, 'forgot'));
-Route::put('reset', sprintf('%s@%s', PasswordResetController::class, 'reset'));
+Route::post('forgot', sprintf('%s@%s', PasswordResetController::class, 'forgot'))
+    ->name('password.forgot');
+Route::put('reset', sprintf('%s@%s', PasswordResetController::class, 'reset'))
+    ->name('password.reset');
